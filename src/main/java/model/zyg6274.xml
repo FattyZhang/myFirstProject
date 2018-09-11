@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model i="xx" b="ww" c="zz">
+  <xmlName Name="张三v" age="30">张三t</xmlName>
+  <xmlJob Job="出票v">出票t</xmlJob>
+  <xmlId Id="1v">
+  	<aaa a="av">id1</aaa>
+  	<bbb b="bv">id2</bbb>
+  	<ccc c="cv">id3</ccc>
+  </xmlId>
+</Model>

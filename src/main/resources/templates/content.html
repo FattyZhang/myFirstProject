@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>用户列表</title>
+</head>
+<body>
+	<div th:fragment="content">
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>名字</th>
+					<th>年龄</th>
+					<th>工作</th>
+					<th>电话</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp,iterStat:${list }">
+					<!-- id -->
+					<td th:text="${emp.id}"></td>
+					<!-- 名字 -->
+					<td th:if="${emp.user != '张三'}"><span th:text="${emp.user}+1"></span></td>
+					<!-- 条件返回true 执行 -->
+					<td th:unless="${emp.user != '张三'}"><span
+						th:text="${emp.user}"></span></td>
+					<!-- 条件返回false 执行 -->
+					<!-- 年龄 -->
+					<td th:text="${emp.age}"></td>
+					<!-- 工作 -->
+					<td th:text="${emp.job}"></td>
+					<!-- 电话 -->
+					<td th:text="${emp.mobile}"></td>
+					<!-- 创建时间 -->
+					<td th:text="${emp.createdate}"></td>
+					<td></td>
+					<td><input type="button" class="btn btn-success btn-sm" value="点击事件"
+						th:onclick="b1()" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<div th:replace="page :: page"></div>
+		<div>
+			<a href="uploading"><input type="button" class="btn btn-success"
+				value="文件上传页面" /></a>
+		</div>
+	</div>
+</body>
+</html>

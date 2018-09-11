@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model>
+  <xmlName Name="张三">张三</xmlName>
+  <xmlJob Job="出票">出票</xmlJob>
+  <xmlId Id="1">1</xmlId>
+</Model>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.myFirstProject.dao.empDao">
+	<!-- com.example.myFirstProject.mode.emp -->
+
+	
+	<select id="getPageList" parameterType="pageUtil.Page" resultType="com.example.myFirstProject.mode.emp">
+		select * from emp where (1 = 1 ) limit #{start},#{size}
+	</select>
+	<select id="getEmpCount" resultType="java.lang.Integer">
+		select count(*) from emp
+	</select>
+	<select id="getEmpAll" parameterType="com.example.myFirstProject.mode.emp"
+		resultType="com.example.myFirstProject.mode.emp">
+		select * from emp where (1 = 1 )
+		<if test="user !=null and user !=''"> and user=#{user}</if>
+		<if test="password !=null and password !=''"> and password=#{password}</if>
+		<if test="age !=null and age !=''"> and age=#{age}</if>
+		<if test="job !=null and job !=''"> and job=#{job}</if>
+		<if test="mobile !=null and mobile !=''"> and mobile=#{mobile}</if>
+		<if test="createdate !=null and createdate !=''"> and createdate=#{createdate}</if>
+	</select>
+
+	<select id="getById" parameterType="java.lang.Integer"
+		resultType="com.example.myFirstProject.mode.emp">
+		select * from emp where id=#{id}
+	</select>
+
+	<update id="updateEmp" parameterType="com.example.myFirstProject.mode.emp">
+		update emp
+		<set>
+			<if test="user != null">user = #{user,jdbcType=VARCHAR},</if>
+			<if test="age != null">age = #{age,jdbcType=VARCHAR},</if>
+			<if test="password != null">password =
+				#{password,jdbcType=VARCHAR},</if>
+			<if test="job != null">job = #{job,jdbcType=VARCHAR},</if>
+			<if test="mobile != null">mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="createdete != null">createdate =
+				#{createdate,jdbcType=TIMEDATE},</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from where id =
+		#{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insertEmp" parameterType="com.example.myFirstProject.mode.emp">
+		insert into emp
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="user != null"> user,</if>
+			<if test="password != null"> password,</if>
+			<if test="age != null"> age,</if>
+			<if test="job != null"> job,</if>
+			<if test="mobile != null"> mobile,</if>
+			<if test="createdate != null"> createdate,</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="user != null">user = #{user,jdbcType=VARCHAR},</if>
+			<if test="password != null">password =
+				#{password,jdbcType=VARCHAR},</if>
+			<if test="age != null">age = #{age,jdbcType=VARCHAR},</if>
+			<if test="job != null">job = #{job,jdbcType=VARCHAR},</if>
+			<if test="mobile != null">mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">createdate =
+				#{createdate,jdbcType=TIMEDATE},</if>
+		</trim>
+	</insert>
+
+
+
+
+
+
+
+
+</mapper>

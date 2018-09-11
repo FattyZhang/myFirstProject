@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+<script type="text/javascript">
+		
+		function b1(){
+			layer.alert("th:onclick 事件");
+		}
+		var x = 5;
+		function pages(obj){
+			var page = $(obj);
+				console.log("page: "+page);
+			var currentpage = page.attr("value");
+			
+			if(currentpage == "below"){
+				currentpage = x+1;
+				x = currentpage;
+			}
+			if(currentpage == "up"){
+				currentpage = x-1;
+				x = currentpage;
+			}
+			if(x == 0){
+				currentpage = 1;
+			}
+			console.log("currentpage: "+currentpage);
+			$.post("index",{currentpage : currentpage },function(){
+				window.location.reload();
+			});
+			
+		}
+		
+	</script>
+<head>
+<meta charset="UTF-8" />
+<title>用户列表</title>
+</head>
+<body>
+	<div>
+		<div th:replace="content :: content"></div>
+	</div>
+</body>
+
+</html>
+
+
+

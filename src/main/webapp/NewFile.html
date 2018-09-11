@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>MD5 Hash Generator</title>
+<script src="angular.min.js"></script>
+<script src="md5.js"></script>
+<script>
+			var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope) {
+
+				$scope.execute = function() {
+					const dateTime = Date.now();
+					const timestamp = Math.floor(dateTime / 1000);
+					const concatStr= $scope.key + $scope.secret + timestamp;
+
+					$scope.timestamp = timestamp;
+	    			$scope.digSign = String(CryptoJS.MD5(concatStr)).toLowerCase();
+    			}
+
+			});
+		</script>
+</head>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<p>
+			API Key : <input type="text" ng-model="key" />
+		</p>
+		<p>
+			Shared Secret: <input type="text" ng-model="secret" />
+		</p>
+
+		<p>
+			<input type="submit" value="Refresh Timestamp & Signature"
+				ng-click="execute()" />
+		</p>
+
+		<h1>Unix Timestamp: {{ timestamp }}</h1>
+		<h1>Digital Signature: {{ digSign }}</h1>
+	</div>
+
+</body>
+</html>

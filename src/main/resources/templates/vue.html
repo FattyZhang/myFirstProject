@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+$(function(){
+	var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'Hello Vue!',
+		    zyg: 'zyg1111' 
+		  }
+	})
+	
+	var app2 = new Vue({
+		el: '#app2',
+		data: {
+			message: '页面加载'+ new Date().toLocaleString()
+		}
+	});
+	
+	var app3 = new Vue({
+		el: '#app3',
+		data: {
+			seen: true
+		}
+	});
+	
+	var app4 = new Vue({
+		el: '#app4',
+		data:{
+			todos:[
+				{ text: 'xxxxx'},
+				{ text: 'ttttt'},
+				{ text: 'yyyyy'}
+			]
+		}
+	});
+	
+	var index = 0;
+	var app5 = new Vue({
+		el: '#app5',
+		data: {
+			msg:'测试单击事件',
+		},
+		methods:{
+			onClick:function(){
+				this.msg = index+1+'测试成功'
+			}
+		}	
+	});
+	
+	var app6 = new Vue({
+		el: '#app6',
+		data:{
+			msg: '看我72变~'
+		}
+	});
+	
+	Vue.component('tode-item',{
+		props:['todo'],
+		template: '<li>{{ todo.text }}</li>'
+	});
+	var app7 = new Vue({
+		el: '#app7',
+		data:{
+			groceryList:[
+				{id:0, text:'蔬菜'}
+				{id:1, text:'奶酪'}
+				{id:2, text:'水果'}
+			]
+		}
+	});
+	
+	
+});
+
+</script>
+</head>
+<body>
+	<div id='app7'>
+		<ol>
+			 <!--
+      			现在我们为每个 todo-item 提供 todo 对象
+      			todo 对象是变量，即其内容可以是动态的。
+     			我们也需要为每个组件提供一个“key”，稍后再
+    			作详细解释。
+    		-->
+    		<todo-item
+	    		v-for="item in groceryList"
+      			v-bind:todo="item"
+      			v-bind:key="item.id">
+    		
+    		</todo-item>
+		</ol>
+	</div>
+	
+	<div id='app6'>
+		<p>{{ msg }}</p>
+		书写内容吧,我们将展示出来~:<input type="text" v-model='msg'/>
+	</div>
+
+	<div id='app5'>
+		<p>{{ msg }}</p>
+		<input type="button" v-on:click='onClick' value="单击事件"/>
+	</div>
+
+	<div id="app4">
+		<select >
+			<option v-for="opt in todos">
+				{{ opt.text }}
+			</option>
+		</select>
+	</div>
+
+	<div id="app3">
+		<p v-if='seen'> 你现在可以看到我了 </p>
+	</div>
+
+	<div id="app2">
+		<span v-bind:title='message'>
+		 	鼠标悬停时触发的事件~
+		</span>
+	</div>
+
+	<div id="app">
+  		{{ message }}{{ zyg }}
+	</div>
+	 	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
