@@ -1,17 +1,12 @@
 package myFirstProject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 
@@ -21,6 +16,21 @@ import com.example.myFirstProject.mode.emp;
 
 public class test111 {
 	
+	@Test
+	public void test() {
+		
+	}
+	
+	@Test
+	public void test14() {
+		String str = "123Java456Java789Java";
+		Pattern pattern = Pattern.compile("Java");
+		System.out.println(pattern.pattern());//返回此模式的正则表达式即Java
+		
+		String[] result = pattern.split(str);
+		for(String s : result)
+		    System.out.println(s);
+	}
 	
 	
 	
@@ -129,7 +139,7 @@ public class test111 {
 	}
 	
 	@Test
-	public void test() {
+	public void test13() {
 		List<String> list2 = new ArrayList<String>();
 		List<String> list1 = new ArrayList<String>();
 		for(int i=0;i<3;i++) {

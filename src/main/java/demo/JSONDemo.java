@@ -26,7 +26,7 @@ public class JSONDemo {
 		jsonVo.setId(1);
 		jsonVo.setName("张三");
 		jsonVo.setTime(new Date());
-		JSONObject json = (JSONObject) JSON.toJSON(jsonVo);
+		String json = JSON.toJSONString(jsonVo);
 		System.out.println(json);
 		String jsonStr = JSON.toJSONString(jsonVo);
 		System.out.println(jsonStr);
