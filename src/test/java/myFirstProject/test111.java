@@ -1,7 +1,9 @@
 package myFirstProject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,45 @@ public class test111 {
 	
 	@Test
 	public void test() {
+		String x = "AXCVBF211244";
+		String[] str = x.split(",");
+		System.out.println(str.length);
+		for (int i = 0; i < str.length; i++) {
+			System.out.println("11:"+str[i]);
+		}
+	}
+	
+	@Test
+	public void test16() {
+		PlalindromeString ps = new PlalindromeString();
+
+		String str = "asdfasdfs555555dASDGVS";
+        System.out.println(ps.findLongestPlalindromeString(str));
+        
 		
+	}
+	
+	@Test
+	public void test15() throws ParseException {
+
+		SimpleDateFormat  sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		int MILLISECOND_TURN_DAYS = 1000 * 3600 * 24;
+		Calendar calendarEarly = Calendar.getInstance();
+		Calendar calendarLate = Calendar.getInstance();
+		calendarEarly.setTime(new Date());
+		calendarLate.setTime(sdf.parse("2018-12-5"));
+		// 设置时间为0时
+		calendarEarly.set(Calendar.HOUR_OF_DAY, 0);
+		calendarEarly.set(Calendar.MINUTE, 0);
+		calendarEarly.set(Calendar.SECOND, 0);
+		calendarLate.set(Calendar.HOUR_OF_DAY, 0);
+		calendarLate.set(Calendar.MINUTE, 0);
+		calendarLate.set(Calendar.SECOND, 0);
+		// 得到两个日期相差的天数
+		int number = (int) (calendarLate.getTime().getTime() / MILLISECOND_TURN_DAYS
+				- calendarEarly.getTime().getTime() / MILLISECOND_TURN_DAYS);
+		System.out.println("差:" + number);
 	}
 	
 	@Test

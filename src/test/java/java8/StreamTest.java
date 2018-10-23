@@ -1,5 +1,7 @@
 package java8;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +13,18 @@ public class StreamTest {
 	
 	@Test
 	public void test() {
-		
+		List<Apple> list = new ArrayList<>();
+		for(int i=0;i<5;i++) {
+			Apple a = new Apple("111111", i);
+			list.add(a);
+		}
+		list.stream().filter(this::filter).collect(toList());
+	}
+	
+	public boolean filter(Apple a) {
+		int length = a.getColour().length();
+		System.out.println("sss:"+length);
+		return false;
 	}
 	
 	@Test
