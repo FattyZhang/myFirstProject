@@ -48,7 +48,7 @@ public class StreamTest {
 	@Test
 	public void test1() {
 		Stream<Integer> stream = Stream.of(1,2,3,4,5,6);
-		stream.forEach(Integer -> System.out.println(Integer));
+		stream.forEach(System.out::println);
 	}
 	
 

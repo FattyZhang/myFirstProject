@@ -1,5 +1,6 @@
 package myFirstProject;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,11 +8,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.myFirstProject.mode.emp;
@@ -20,12 +24,138 @@ public class test111 {
 	
 	@Test
 	public void test() {
-		String x = "AXCVBF211244";
-		String[] str = x.split(",");
-		System.out.println(str.length);
-		for (int i = 0; i < str.length; i++) {
-			System.out.println("11:"+str[i]);
+	 int x = 0;
+	 int y = 1;
+	 int z = 6;
+	 int e = 5;
+	 
+	 if(x==0 && y == 1 && (z==2 || e == 5)) {
+		 System.out.println("11111");
+	 }else {
+		 System.out.println("22222");
+	 }
+	 
+	}
+	
+	public static String replaceBlank(String str) {
+		String dest = "";
+		if (str!=null) {
+			Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+			Matcher m = p.matcher(str);
+			dest = m.replaceAll("");
 		}
+		return dest;
+	}
+	
+	@Test
+	public void test99() {
+		
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy K:m:s a",Locale.ENGLISH);
+	Date d2 = null;
+	try {
+	d2 = sdf.parse("Sep 29, 2012 1:00:01 AM");
+	} catch (ParseException e) {
+	e.printStackTrace();
+	}
+	Date d3 = new Date();
+	System.out.println("d2 ====== "+d2);
+	System.out.println("d3 ====== "+sdf.format(d3));
+	
+	
+	}
+	
+	
+	public static String mul(String v1, String v2) {
+//		if(v1==null || v1.equals(""))
+//			v1="0";
+//		if(v2==null || v2.equals(""))
+//			v2="0";
+		if (StringUtils.isEmpty(v1)){
+			v1="0";
+		}
+		if (StringUtils.isEmpty(v2)){
+			v2="0";
+		}
+
+		BigDecimal b1 = null;
+		try {
+			b1 = new BigDecimal(v1);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			b1=new BigDecimal(0);
+		}
+
+		BigDecimal b2 = null;
+		try {
+			b2 = new BigDecimal(v2);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			b2 = new BigDecimal(0);
+		}
+		return b1.multiply(b2).toString();
+
+	}
+	
+	public static String getPreTime(String sj1, String jj) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String mydate1 = "";
+		try {
+			Date date1 = format.parse(sj1);
+			long Time = (date1.getTime() / 1000) + Integer.parseInt(jj) * 60;
+			date1.setTime(Time * 1000);
+			mydate1 = format.format(date1);
+		} catch (Exception e) {
+		}
+		return mydate1;
+	}
+	
+	
+	
+	public static String getEnDate(String date) throws ParseException{
+    	SimpleDateFormat sdf_us = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
+    	String[] str = sdf_us.parse(date).toString().split(" ");
+    	return Integer.parseInt(str[2])+str[1];
+    }
+	
+	@Test
+	public void test20() {
+		try {
+			String enDate = getEnDate("2018-12-31");
+			System.out.println(enDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test19() {
+		String str = "";
+		str = String.format("订单ID:%s,店铺:%s,平台:%s,价格:%s", "123",5,true,555);
+		System.out.println(str);
+		
+	}
+	
+	@Test
+	public void test18() {
+		String str = "324213sadfs1235555-";
+		String substring = str.substring(0,str.length()-1);
+		System.out.println(substring);
+	}
+	
+	@Test
+	public void test17() {
+		String xx = "";
+		String xxx = "";
+		String[] split = xx.split(";");
+		for (int i = 0; i < split.length; i++) {
+			if(xxx.indexOf(split[i]) == -1) {
+				xxx += split[i]+";";
+			}
+		}
+		System.out.println("xx"+xxx);
+		System.out.println("xxx"+xxx.substring(0,xxx.length()-1));
 	}
 	
 	@Test
@@ -34,8 +164,6 @@ public class test111 {
 
 		String str = "asdfasdfs555555dASDGVS";
         System.out.println(ps.findLongestPlalindromeString(str));
-        
-		
 	}
 	
 	@Test
@@ -47,7 +175,7 @@ public class test111 {
 		Calendar calendarEarly = Calendar.getInstance();
 		Calendar calendarLate = Calendar.getInstance();
 		calendarEarly.setTime(new Date());
-		calendarLate.setTime(sdf.parse("2018-12-5"));
+		calendarLate.setTime(sdf.parse("2019-01-17"));
 		// 设置时间为0时
 		calendarEarly.set(Calendar.HOUR_OF_DAY, 0);
 		calendarEarly.set(Calendar.MINUTE, 0);
@@ -126,12 +254,10 @@ public class test111 {
 	
 	@Test
 	public void test7() {
-		String date1 = "2018-08-01";
-		String date2 = "2018-07-22";
-		if(date2.compareTo(date1) >= 0) {
-			System.out.println("2大于1");
-		}else if(date2.compareTo(date1) < 0) {
-			System.out.println("1大于2");
+		if("2019-01-01 00:00:00".compareTo("2018-01-01 00:00:00") > 0) {
+			System.out.println("1111111111111111");
+		}else {
+			System.out.println("1111111111111111-2");
 		}
 		
 	}

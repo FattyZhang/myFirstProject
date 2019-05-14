@@ -27,6 +27,18 @@ public class Apple {
 		this.colour = colour;
 		this.weight = weight;
 	}
+	
+	public Apple() {
+		super();
+	}
+	
+	public static boolean isColour(Apple apple,String colour) {
+		return colour.equals(apple.getColour());
+	}
+	
+	public static boolean isWeight(Apple apple) {
+		return 150 > apple.getWeight();
+	}
 
 	@Override
 	public String toString() {
